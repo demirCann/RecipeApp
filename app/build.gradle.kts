@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -66,4 +69,33 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Compose Navigation
+    implementation(libs.androidx.navigation.compose)
+
+    // Retrofit
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.converter.gson)
+    implementation(libs.retrofit.kotlin.serialization)
+
+    implementation(libs.room.runtime)
+    annotationProcessor(libs.room.compiler)
+    ksp(libs.room.compiler)
+    implementation(libs.room.ktx)
+
+    // KotlinX Serialization
+    implementation(libs.kotlinx.serialization.json)
+
+    // Dagger - Hilt
+    implementation(libs.hilt.android)
+    implementation(libs.hilt.ext.work)
+    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.ext.compiler)
+    implementation(libs.androidx.work.ktx)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    // Coil
+    implementation(libs.coil.compose)
+
+
 }
