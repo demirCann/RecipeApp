@@ -21,4 +21,6 @@ object AppModule {
     fun provideAuthRepository(auth: FirebaseAuth): FirebaseAuthRepository {
         return FirebaseAuthRepository(auth)
     }
+
+
 }
