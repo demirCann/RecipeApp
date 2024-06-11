@@ -1,23 +1,18 @@
- package com.demircandemir.recipefinder
+ package com.demircandemir.reciper
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.demircandemir.recipefinder.navigation.RecipeNavigationGraph
-import com.demircandemir.recipefinder.ui.theme.RecipeFinderTheme
+import com.demircandemir.reciper.navigation.RecipeNavigationGraph
+import com.demircandemir.reciper.ui.theme.RecipeFinderTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+ @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             RecipeFinderTheme {
                 RecipeNavigationGraph(modifier = Modifier.fillMaxSize())
