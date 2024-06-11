@@ -1,4 +1,4 @@
-package com.demircandemir.recipefinder.ui.theme
+package com.demircandemir.reciper.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

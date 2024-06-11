@@ -1,4 +1,4 @@
-package com.demircandemir.recipefinder
+package com.demircandemir.reciper
 
 import org.junit.Test
 

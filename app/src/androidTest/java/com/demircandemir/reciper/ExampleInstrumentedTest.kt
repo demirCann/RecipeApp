@@ -1,4 +1,4 @@
-package com.demircandemir.recipefinder
+package com.demircandemir.reciper
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

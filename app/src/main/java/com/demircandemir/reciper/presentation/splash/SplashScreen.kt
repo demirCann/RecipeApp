@@ -1,9 +1,7 @@
-package com.demircandemir.recipefinder.presentation.splash
+package com.demircandemir.reciper.presentation.splash
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
@@ -16,7 +14,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.airbnb.lottie.compose.LottieAnimation
@@ -24,18 +21,19 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
-import com.demircandemir.recipefinder.R
-import com.demircandemir.recipefinder.navigation.RecipeNavigation
+import com.demircandemir.reciper.R
+import com.demircandemir.reciper.navigation.RecipeNavigation
 import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(
-    navController: NavController
+    navController: NavController,
+    onNavigateToSignIn: () -> Unit,
 ) {
 
     LaunchedEffect(key1 = true) {
-        delay(9000)
-        navController.navigate(RecipeNavigation.HOME)
+        delay(3000)
+        onNavigateToSignIn()
     }
 
     Column(
@@ -66,7 +64,7 @@ fun SplashScreen(
         )
 
         Text(
-            text = "Recipe Finder",
+            text = "Reciper",
             style = MaterialTheme.typography.displayLarge
         )
 
