@@ -15,17 +15,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.demircandemir.reciper.presentation.diet.DietScreen
 import com.demircandemir.reciper.presentation.home.HomeScreen
+import com.demircandemir.reciper.presentation.meal_type.MealTypeListScreen
+import com.demircandemir.reciper.presentation.meals.MealsScreen
 import com.demircandemir.reciper.presentation.register.RegisterScreen
 import com.demircandemir.reciper.presentation.sign_in.GoogleAuthUiClient
 import com.demircandemir.reciper.presentation.sign_in.mail.MailSignInScreenScreen
 import com.demircandemir.reciper.presentation.sign_in.SignInScreen
 import com.demircandemir.reciper.presentation.sign_in.SignInViewModel
 import com.demircandemir.reciper.presentation.splash.SplashScreen
+import com.demircandemir.reciper.util.Constants.DIET_ARGUMENT_KEY
+import com.demircandemir.reciper.util.Constants.MEAL_ID_ARGUMENT_KEY
+import com.demircandemir.reciper.util.Constants.MEAL_TYPE_ARGUMENT_KEY
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -71,7 +79,7 @@ fun RecipeNavigationGraph(
 
             LaunchedEffect(key1 = Unit) {
                 if(googleAuthUiClient.getSignedInUser() != null) {
-                    navActions.navigateToHome()
+                    navActions.navigateToRecipeList()
                 }
             }
 
@@ -97,7 +105,7 @@ fun RecipeNavigationGraph(
                         Toast.LENGTH_LONG
                     ).show()
 
-                    navActions.navigateToHome()
+                    navActions.navigateToRecipeList()
                     viewModel.resetState()
                 }
             }
@@ -119,11 +127,11 @@ fun RecipeNavigationGraph(
             )
         }
 
-        composable(route = RecipeNavigation.MAILSIGNIN) {
+        composable(route = RecipeNavigation.MAIL_SIGN_IN) {
             MailSignInScreenScreen(
                 onSignInClick = {
-                    navController.navigate(RecipeNavigation.HOME) {
-                        popUpTo(RecipeNavigation.MAILSIGNIN) {
+                    navController.navigate(RecipeNavigation.RECIPE_LIST) {
+                        popUpTo(RecipeNavigation.MAIL_SIGN_IN) {
                             inclusive = true
                         }
 
@@ -153,6 +161,60 @@ fun RecipeNavigationGraph(
                     }
                 }
             )
+        }
+
+        composable(route = RecipeNavigation.RECIPE_LIST) {
+            MealsScreen(
+                onAllMealsForTypes = {
+                    navActions.navigateToMealTypeList(it)
+                },
+                onNavigateDetail = {
+                    navActions.navigateToRecipeDetail(it)
+                },
+                onNavigateDietScreen = {
+                    navActions.navigateToDietScreen(it)
+                }
+            )
+        }
+
+        composable(
+            route = RecipeNavigation.MEAL_TYPE_LIST,
+            arguments = listOf(navArgument(MEAL_TYPE_ARGUMENT_KEY) {
+                type = NavType.StringType
+            })
+        ) {
+            MealTypeListScreen(
+                onSearchClicked = {},
+                onBackClicked = { navController.popBackStack() },
+                onNavigateDetail = {
+                    navActions.navigateToRecipeDetail(it)
+                }
+            )
+        }
+
+        composable(
+            route = RecipeNavigation.DIET,
+            arguments = listOf(navArgument(DIET_ARGUMENT_KEY) {
+                type = NavType.StringType
+            })
+        ) {
+                DietScreen(
+                    onSearchClicked = {},
+                    onBackClicked = { navController.popBackStack() },
+                    onNavigateDetail = {
+                        navActions.navigateToRecipeDetail(it)
+                    }
+                )
+        }
+
+        composable(
+            route = RecipeNavigation.RECIPE_DETAIL,
+            arguments = listOf(navArgument(MEAL_ID_ARGUMENT_KEY) {
+                type = NavType.IntType
+            })
+        ) {
+//            DetailScreen()
+
         }
 
     }
