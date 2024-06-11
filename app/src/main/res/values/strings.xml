@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">RecipeFinder</string>
     <string name="web_client_id">739295291080-d8vsmeiddpf67a13favotsuq7mohjuv6.apps.googleusercontent.com</string>
+    <string name="back_button">Back Button</string>
+    <string name="search_button">Search Button</string>
+    <string name="favorite">Favorite</string>
 </resources>
