@@ -4,14 +4,15 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
-    namespace = "com.demircandemir.recipefinder"
+    namespace = "com.demircandemir.reciper"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.demircandemir.recipefinder"
+        applicationId = "com.demircandemir.reciper"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -62,6 +63,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.googleid)
+    implementation(libs.androidx.lifecycle.runtime.compose.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -99,5 +102,11 @@ dependencies {
 
     // Lottie
     implementation(libs.lottie.compose)
+
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.play.services.auth)
+
 
 }
