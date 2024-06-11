@@ -1,10 +1,11 @@
-package com.demircandemir.recipefinder.navigation
+package com.demircandemir.reciper.navigation
 
 import androidx.navigation.NavHostController
 
 object RecipeNavigation {
     const val SPLASH = "splash"
     const val LOGIN = "login"
+    const val MAILSIGNIN = "mail_sign_in"
     const val REGISTER = "register"
     const val SURVEY = "survey"
     const val HOME = "home"
@@ -20,6 +21,9 @@ class RecipeNavigationActions(private val navController: NavHostController) {
     }
     val navigateToLogin: () -> Unit = {
         navController.navigate(RecipeNavigation.LOGIN)
+    }
+    val navigateToMailSignIn: () -> Unit = {
+        navController.navigate(RecipeNavigation.MAILSIGNIN)
     }
     val navigateToRegister: () -> Unit = {
         navController.navigate(RecipeNavigation.REGISTER)
