@@ -108,5 +108,11 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.play.services.auth)
 
+    // Chucker
+    debugImplementation (libs.chucker.library)
+    releaseImplementation (libs.chucker.library.no.op)
+
+
+
 
 }
