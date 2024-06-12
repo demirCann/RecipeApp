@@ -22,16 +22,19 @@ fun MealsTopBar(
     TopAppBar(
         title = { Text(text = topBarName) },
         navigationIcon = {
-            if (topBarName != "Meals") {
+            if (topBarName != "Meals" && topBarName != "Favorites") {
                 BackButton{
                     onBackClicked()
                 }
             }
         },
         actions = {
-            SearchButton {
-                onSearchClicked()
+            if(topBarName != "Favorites") {
+                SearchButton {
+                    onSearchClicked()
+                }
             }
+
         }
     )
 }

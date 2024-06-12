@@ -25,7 +25,7 @@ class FavoritesViewModel @Inject constructor(
         getFavorites()
     }
 
-    private fun getFavorites() {
+    fun getFavorites() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.getAllFavorites().collect {
                 when (it) {
@@ -50,6 +50,7 @@ class FavoritesViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             repository.removeMealFromFavorites(mealId)
         }
+        getFavorites()
     }
 
 }

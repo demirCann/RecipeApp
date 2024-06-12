@@ -1,5 +1,6 @@
 package com.demircandemir.reciper.presentation.meals
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -93,7 +94,14 @@ fun FoodCard(
                                 if (!favoriteState) {
                                     favoriteState = true
                                     onAddedFavorite(meal)
+                                    Log.d("FoodCard", "Added to favorite")
+                                } else {
+                                    favoriteState = false
+                                    onAddedFavorite(meal)
+                                    Log.d("FoodCard", "Removed from favorite")
+                                    onAddedFavorite(meal)
                                 }
+
                             }
                         ) {
                             Icon(

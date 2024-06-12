@@ -3,7 +3,7 @@ package com.demircandemir.reciper.util
 object Constants {
     const val BASE_URL = "https://api.spoonacular.com/"
 
-    const val API_KEY = "1c58965b91cc408185879432fce176d1"
+    const val API_KEY = "ba60a37800624d9f9e9c18655126e6b1"
 
     const val MEAL_ID_ARGUMENT_KEY = "mealId"
 

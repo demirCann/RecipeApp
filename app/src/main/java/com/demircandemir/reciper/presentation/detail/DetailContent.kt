@@ -87,7 +87,7 @@ fun LineIndicatorExample(
     Column(modifier  = Modifier.heightIn(min = 100.dp, max = 500.dp)){
 
 
-        val pageCount = meal.analyzedInstructions.size
+        val pageCount = meal.analyzedInstructions.first().steps.size
         val pagerState = rememberPagerState(pageCount = { pageCount + 1 })
 
 
@@ -198,7 +198,8 @@ fun StartPage(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.surface)
-            .padding(top = 16.dp),
+            .padding(start = 16.dp,top = 16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         Text(
@@ -222,11 +223,11 @@ fun StartPage(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "${meal.id} kcal",
+                    text = "${meal.servings}",
                     style = MaterialTheme.typography.bodyMedium,
                 )
                 Text(
-                    text = "Calories",
+                    text = "Servings",
                     style = MaterialTheme.typography.titleMedium,
                 )
             }
@@ -235,11 +236,11 @@ fun StartPage(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "${meal.id} g",
+                    text = "${meal.readyInMinutes}",
                     style = MaterialTheme.typography.bodyMedium,
                 )
                 Text(
-                    text = "Protein",
+                    text = "Min",
                     style = MaterialTheme.typography.titleMedium,
                 )
             }
@@ -247,11 +248,11 @@ fun StartPage(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "${meal.id} g",
+                    text = "${meal.healthScore}",
                     style = MaterialTheme.typography.bodyMedium,
                 )
                 Text(
-                    text = "Carbs",
+                    text = "Healt Score",
                     style = MaterialTheme.typography.titleMedium,
                 )
             }
@@ -259,11 +260,11 @@ fun StartPage(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "${meal.id} g",
+                    text = "${meal.pricePerServing}",
                     style = MaterialTheme.typography.bodyMedium,
                 )
                 Text(
-                    text = "Fat",
+                    text = "Price Per Serving",
                     style = MaterialTheme.typography.titleMedium,
                 )
             }
@@ -294,7 +295,7 @@ fun StartPage(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = it.name,
+                    text = it.name.replaceFirst(it.name[0], it.name[0].uppercaseChar()),
                     style = MaterialTheme.typography.bodyLarge,
                 )
             }

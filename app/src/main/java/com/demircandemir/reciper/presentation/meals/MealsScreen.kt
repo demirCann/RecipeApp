@@ -21,7 +21,8 @@ fun MealsScreen(
     navController: NavHostController,
     viewModel: MealsViewModel = hiltViewModel(),
     onNavigateDetail: (Int) -> Unit,
-    onNavigateDietScreen: (String) -> Unit
+    onNavigateDietScreen: (String) -> Unit,
+    onSearchClicked: () -> Unit
 ) {
 
     val breakfastRecipes by viewModel.breakfastRecipes.collectAsState()
@@ -32,14 +33,14 @@ fun MealsScreen(
     val drinkRecipes by viewModel.drinkRecipes.collectAsState()
 
     val scrollState = rememberScrollState()
-    
+
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
             MealsTopBar(
                 topBarName = "Meals",
-                onSearchClicked = {},
+                onSearchClicked = onSearchClicked,
                 onBackClicked = {}
             )
 
