@@ -28,6 +28,7 @@ import com.demircandemir.reciper.presentation.favorites.FavoritesScreen
 import com.demircandemir.reciper.presentation.meal_type.MealTypeListScreen
 import com.demircandemir.reciper.presentation.meals.MealsScreen
 import com.demircandemir.reciper.presentation.register.RegisterScreen
+import com.demircandemir.reciper.presentation.search.SearchScreen
 import com.demircandemir.reciper.presentation.sign_in.GoogleAuthUiClient
 import com.demircandemir.reciper.presentation.sign_in.mail.MailSignInScreenScreen
 import com.demircandemir.reciper.presentation.sign_in.SignInScreen
@@ -45,7 +46,7 @@ fun RecipeNavigationGraph(
     modifier: Modifier,
     navController: NavHostController = rememberNavController(),
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
-    startDestination: String = RecipeNavigation.SPLASH,
+    startDestination: String = RecipeNavigation.HOME,
     navActions: RecipeNavigationActions = remember(navController) {
         RecipeNavigationActions(navController)
     }
@@ -161,7 +162,7 @@ fun RecipeNavigationGraph(
 
 
         navigation(
-            startDestination = RecipeNavigation.RECIPE_LIST,
+            startDestination = RecipeNavigation.FAVORITES,
             route = RecipeNavigation.HOME
         ) {
             composable(route = RecipeNavigation.RECIPE_LIST) {
@@ -177,7 +178,10 @@ fun RecipeNavigationGraph(
                     onNavigateDietScreen = {
                         navActions.navigateToDietScreen(it)
                     },
-                    navController = navController
+                    navController = navController,
+                    onSearchClicked = {
+                        navActions.navigateToSearch()
+                    }
                 )
             }
 
@@ -188,7 +192,7 @@ fun RecipeNavigationGraph(
                 })
             ) {
                 MealTypeListScreen(
-                    onSearchClicked = {},
+                    onSearchClicked = { navActions.navigateToSearch() },
                     onBackClicked = { navController.popBackStack() },
                     onNavigateDetail = {
                         navActions.navigateToRecipeDetail(it)
@@ -203,7 +207,7 @@ fun RecipeNavigationGraph(
                 })
             ) {
                 DietScreen(
-                    onSearchClicked = {},
+                    onSearchClicked = { navActions.navigateToSearch() },
                     onBackClicked = { navController.popBackStack() },
                     onNavigateDetail = {
                         navActions.navigateToRecipeDetail(it)
@@ -235,6 +239,17 @@ fun RecipeNavigationGraph(
                 )
 
             }
+
+            composable(
+                route = RecipeNavigation.SEARCH
+            ) {
+                SearchScreen(
+                    onClosedClicked = { navController.popBackStack() },
+                    navigateToDetail = { navActions.navigateToRecipeDetail(it) }
+                )
+            }
+
+
         }
 
 

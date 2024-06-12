@@ -112,6 +112,9 @@ dependencies {
     debugImplementation (libs.chucker.library)
     releaseImplementation (libs.chucker.library.no.op)
 
+    // Work Manager
+    implementation(libs.androidx.work.runtime.ktx)
+
 
 
 
