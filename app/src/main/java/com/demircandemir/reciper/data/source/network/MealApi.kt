@@ -2,7 +2,6 @@ package com.demircandemir.reciper.data.source.network
 
 import com.demircandemir.reciper.data.source.network.response.MealDetailResponse
 import com.demircandemir.reciper.data.source.network.response.MealResponse
-import com.demircandemir.reciper.data.source.network.response.RecipeAutoComplete
 import com.demircandemir.reciper.util.Constants.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
