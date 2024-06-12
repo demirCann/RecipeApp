@@ -26,6 +26,11 @@ class MealRepositoryImpl @Inject constructor(
         return remoteDataSource.getMealDetails(id)
     }
 
+    override suspend fun searchRecipes(query: String): Flow<ApiResult<MealResponse>> {
+        return remoteDataSource.searchRecipes(query)
+    }
+
+
     override fun getAllFavorites(): Flow<DaoResult<List<Result>>> {
         return localDataSource.getAllFavorites()
     }
@@ -37,5 +42,7 @@ class MealRepositoryImpl @Inject constructor(
     override suspend fun removeMealFromFavorites(mealId: Int) {
         localDataSource.removeMealFromFavorites(mealId)
     }
+
+
 
 }

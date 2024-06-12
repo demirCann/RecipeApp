@@ -11,4 +11,6 @@ interface RemoteDataSource {
     suspend fun getMealsForDiet(diet: String, number: Int): Flow<ApiResult<MealResponse>>
 
     suspend fun getMealDetails(id: Int): Flow<ApiResult<MealDetailResponse>>
+
+    suspend fun searchRecipes(query: String): Flow<ApiResult<MealResponse>>
 }

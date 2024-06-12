@@ -10,6 +10,7 @@ import javax.inject.Inject
 class RemoteDataSourceImpl @Inject constructor(
     private val mealApi: MealApi
 ): RemoteDataSource {
+
     override suspend fun getMealsForTypes(type: String, number: Int): Flow<ApiResult<MealResponse>> = apiFlow {
         mealApi.getMealsForTypes(type = type, number = number)
     }
@@ -21,4 +22,9 @@ class RemoteDataSourceImpl @Inject constructor(
     override suspend fun getMealDetails(id: Int): Flow<ApiResult<MealDetailResponse>> = apiFlow {
         mealApi.getMealDetails(id = id)
     }
+
+    override suspend fun searchRecipes(query: String): Flow<ApiResult<MealResponse>> = apiFlow {
+        mealApi.searchRecipes(query = query)
+    }
+
 }

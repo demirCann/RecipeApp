@@ -14,6 +14,8 @@ interface MealRepository {
 
     suspend fun getMealDetails(id: Int): Flow<ApiResult<MealDetailResponse>>
 
+    suspend fun searchRecipes(query: String): Flow<ApiResult<MealResponse>>
+
     fun getAllFavorites(): Flow<DaoResult<List<Result>>>
 
     suspend fun addToFavorites(result: Result)
