@@ -13,9 +13,11 @@ import com.demircandemir.reciper.presentation.meals.FoodCard
 
 @Composable
 fun ListContent(
+    modifier: Modifier = Modifier,
     meals: List<Result>,
+    isFavorite: Boolean = false,
     navigateToDetail: (Int) -> Unit,
-    modifier: Modifier = Modifier
+    onAddedFavorite: (Result) -> Unit
 ) {
 
 
@@ -30,7 +32,9 @@ fun ListContent(
         items(count = meals.size) {
             FoodCard(
                 meal = meals[it],
-                navigateToDetail = navigateToDetail
+                isFavorite = isFavorite,
+                navigateToDetail = navigateToDetail,
+                onAddedFavorite = onAddedFavorite
             )
         }
     }

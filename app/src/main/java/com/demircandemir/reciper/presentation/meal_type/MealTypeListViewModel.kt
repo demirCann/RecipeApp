@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.demircandemir.reciper.data.source.MealRepository
 import com.demircandemir.reciper.data.source.network.response.MealResponse
+import com.demircandemir.reciper.data.source.network.response.Result
 import com.demircandemir.reciper.util.ApiResult
 import com.demircandemir.reciper.util.Constants.MEAL_TYPE_ARGUMENT_KEY
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -53,6 +54,12 @@ class MealTypeListViewModel @Inject constructor(
 
 
     }
+    fun addFavorite(result: Result) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addToFavorites(result)
+        }
+    }
+
 
 
 }

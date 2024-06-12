@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.demircandemir.reciper.data.source.MealRepository
 import com.demircandemir.reciper.data.source.network.response.MealResponse
+import com.demircandemir.reciper.data.source.network.response.Result
 import com.demircandemir.reciper.util.ApiResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -98,6 +99,14 @@ class MealsViewModel @Inject constructor(
             }
         }
     }
+
+    fun addFavorite(result: Result) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addToFavorites(result)
+        }
+    }
+
+
 }
 
 

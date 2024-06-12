@@ -55,7 +55,10 @@ fun DietScreen(
                         val meals = (mealState as MealState.Success).meals.results
                         ListContent(
                             meals = meals,
-                            navigateToDetail = onNavigateDetail
+                            navigateToDetail = onNavigateDetail,
+                            onAddedFavorite = { meal ->
+                                viewModel.addFavorite(meal)
+                            }
                         )
                     }
 

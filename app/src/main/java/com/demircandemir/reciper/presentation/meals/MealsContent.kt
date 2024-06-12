@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.demircandemir.reciper.data.source.network.response.Result
 
 @Composable
 fun MealsContent(
@@ -24,16 +25,17 @@ fun MealsContent(
     soupRecipes: MealState,
     drinkRecipes: MealState,
     onAllMealsForTypes: (String) -> Unit,
-    onNavigateDetail: (Int) -> Unit
+    onNavigateDetail: (Int) -> Unit,
+    onAddedFavorite: (Result) -> Unit,
 ) {
 
     Column {
-        MealSection("Breakfast", breakfastRecipes, onAllMealsForTypes, onNavigateDetail)
-        MealSection("Main Course", lunchRecipes, onAllMealsForTypes, onNavigateDetail)
-        MealSection("Dessert", dessertRecipes, onAllMealsForTypes, onNavigateDetail)
-        MealSection("Snack", snackRecipes, onAllMealsForTypes, onNavigateDetail)
-        MealSection("Soup", soupRecipes, onAllMealsForTypes, onNavigateDetail)
-        MealSection("Drink", drinkRecipes, onAllMealsForTypes, onNavigateDetail)
+        MealSection("Breakfast", breakfastRecipes, onAllMealsForTypes, onNavigateDetail, onAddedFavorite)
+        MealSection("Main Course", lunchRecipes, onAllMealsForTypes, onNavigateDetail, onAddedFavorite)
+        MealSection("Dessert", dessertRecipes, onAllMealsForTypes, onNavigateDetail, onAddedFavorite)
+        MealSection("Snack", snackRecipes, onAllMealsForTypes, onNavigateDetail, onAddedFavorite)
+        MealSection("Soup", soupRecipes, onAllMealsForTypes, onNavigateDetail, onAddedFavorite)
+        MealSection("Drink", drinkRecipes, onAllMealsForTypes, onNavigateDetail, onAddedFavorite)
     }
 
 }
@@ -44,7 +46,8 @@ fun MealSection(
     mealType: String,
     mealState: MealState,
     onAllMealsForTypes: (String) -> Unit,
-    onNavigateDetail: (Int) -> Unit
+    onNavigateDetail: (Int) -> Unit,
+    onAddedFavorite: (Result) -> Unit,
 ) {
     Column {
         Row(
@@ -71,7 +74,8 @@ fun MealSection(
                     items(mealState.meals.number) { index ->
                         FoodCard(
                             mealState.meals.results[index],
-                            navigateToDetail = { mealId -> onNavigateDetail(mealId)}
+                            navigateToDetail = { mealId -> onNavigateDetail(mealId)},
+                            onAddedFavorite = onAddedFavorite
                         )
                     }
                 }
