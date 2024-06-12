@@ -1,9 +1,11 @@
 package com.demircandemir.reciper.navigation
 
+import androidx.compose.material.icons.Icons
 import androidx.navigation.NavHostController
 
 object RecipeNavigation {
     const val SPLASH = "splash"
+    const val AUTH = "auth"
     const val LOGIN = "login"
     const val MAIL_SIGN_IN = "mail_sign_in"
     const val REGISTER = "register"
@@ -12,6 +14,7 @@ object RecipeNavigation {
     const val RECIPE_LIST = "recipe"
     const val MEAL_TYPE_LIST = "meal_type_list/{mealType}"
     const val DIET = "diet/{diet}"
+    const val FAVORITES = "favorites"
     const val SEARCH = "search"
     const val RECIPE_DETAIL = "recipe_detail/{recipeId}"
 }
@@ -21,6 +24,11 @@ class RecipeNavigationActions(private val navController: NavHostController) {
     val navigateToSplash: () -> Unit = {
         navController.navigate(RecipeNavigation.SPLASH)
     }
+
+    val navigateToAuth: () -> Unit = {
+        navController.navigate(RecipeNavigation.AUTH)
+    }
+
     val navigateToLogin: () -> Unit = {
         navController.navigate(RecipeNavigation.LOGIN)
     }
@@ -48,10 +56,14 @@ class RecipeNavigationActions(private val navController: NavHostController) {
         navController.navigate("diet/$diet")
     }
 
+    val navigateToFavorites: () -> Unit = {
+        navController.navigate(RecipeNavigation.FAVORITES)
+    }
+
     val navigateToSearch: () -> Unit = {
         navController.navigate(RecipeNavigation.SEARCH)
     }
-    val navigateToRecipeDetail: (id: Int) -> Unit = { id ->
-        navController.navigate("recipe_detail/$id")
+    val navigateToRecipeDetail: (recipeId: Int) -> Unit = { recipeId ->
+        navController.navigate("recipe_detail/$recipeId")
     }
 }

@@ -12,10 +12,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import com.demircandemir.reciper.presentation.common.BottomNavigationBar
 
 @Composable
 fun MealsScreen(
     onAllMealsForTypes: (String) -> Unit,
+    navController: NavHostController,
     viewModel: MealsViewModel = hiltViewModel(),
     onNavigateDetail: (Int) -> Unit,
     onNavigateDietScreen: (String) -> Unit
@@ -29,16 +32,7 @@ fun MealsScreen(
     val drinkRecipes by viewModel.drinkRecipes.collectAsState()
 
     val scrollState = rememberScrollState()
-
-//    LaunchedEffect(Unit) {
-//        viewModel.fetchMealsForType("breakfast")
-//        viewModel.fetchMealsForType("main course")
-//        viewModel.fetchMealsForType("dessert")
-//        viewModel.fetchMealsForType("snack")
-//        viewModel.fetchMealsForType("soup")
-//        viewModel.fetchMealsForType("drink")
-//    }
-
+    
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -49,6 +43,9 @@ fun MealsScreen(
                 onBackClicked = {}
             )
 
+        },
+        bottomBar = {
+            BottomNavigationBar(navController = navController)
         }
     ) { paddingValues ->
 
@@ -74,7 +71,10 @@ fun MealsScreen(
                 soupRecipes = soupRecipes,
                 drinkRecipes = drinkRecipes,
                 onAllMealsForTypes = onAllMealsForTypes,
-                onNavigateDetail = onNavigateDetail
+                onNavigateDetail = onNavigateDetail,
+                onAddedFavorite = { meal ->
+                    viewModel.addFavorite(meal)
+                }
             )
         }
 
