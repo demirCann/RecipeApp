@@ -4,4 +4,6 @@
     <string name="back_button">Back Button</string>
     <string name="search_button">Search Button</string>
     <string name="favorite">Favorite</string>
+    <string name="favorites">Favorites</string>
+    <string name="bottombar_icon">BottomBar Icon</string>
 </resources>
